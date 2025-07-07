@@ -5,7 +5,6 @@ import '../index.css'
 import { useEffect,useState } from 'react'
 
 function NavBar() {
-  // Helper to set document title
   const handleNavClick = (name) => {
     document.title = `${name} | Ayush Yadav`;
   };

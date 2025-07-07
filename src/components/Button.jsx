@@ -5,7 +5,6 @@ const Button = ({ text, className, id }) => {
 
   const handleClick = (e) => {
     if (isDownload) {
-      // Add your CV download logic here
       console.log("Downloading CV...");
     } else {
       e.preventDefault();

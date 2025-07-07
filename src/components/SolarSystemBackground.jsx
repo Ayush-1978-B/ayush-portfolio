@@ -16,11 +16,9 @@ const SolarSystemBackground = () => {
   useEffect(() => {
     if (!mountRef.current) return;
 
-    // Scene setup
     const scene = new THREE.Scene();
     sceneRef.current = scene;
 
-    // Camera setup
     const camera = new THREE.PerspectiveCamera(
       75,
       window.innerWidth / window.innerHeight,
@@ -30,7 +28,6 @@ const SolarSystemBackground = () => {
     camera.position.set(0, 8, 25);
     cameraRef.current = camera;
 
-    // Renderer setup
     const renderer = new THREE.WebGLRenderer({ 
       alpha: true,
       antialias: true 
@@ -44,7 +41,6 @@ const SolarSystemBackground = () => {
     mountRef.current.appendChild(renderer.domElement);
     rendererRef.current = renderer;
 
-    // Create distant stars background with different sizes
     const createStars = () => {
       const starsGeometry = new THREE.BufferGeometry();
       const starsCount = 3000;
@@ -57,20 +53,16 @@ const SolarSystemBackground = () => {
         positions[i * 3 + 1] = (Math.random() - 0.5) * 300;
         positions[i * 3 + 2] = (Math.random() - 0.5) * 300;
 
-        // Different star colors
         const starType = Math.random();
         if (starType < 0.6) {
-          // White/blue stars
           colors[i * 3] = 0.9 + Math.random() * 0.1;
           colors[i * 3 + 1] = 0.9 + Math.random() * 0.1;
           colors[i * 3 + 2] = 1.0;
         } else if (starType < 0.8) {
-          // Yellow stars
           colors[i * 3] = 1.0;
           colors[i * 3 + 1] = 0.9 + Math.random() * 0.1;
           colors[i * 3 + 2] = 0.6 + Math.random() * 0.4;
         } else {
-          // Red stars
           colors[i * 3] = 1.0;
           colors[i * 3 + 1] = 0.5 + Math.random() * 0.3;
           colors[i * 3 + 2] = 0.3 + Math.random() * 0.3;
@@ -98,27 +90,25 @@ const SolarSystemBackground = () => {
 
     createStars();
 
-    // Create small glowing particles (nearby stars)
     const createSmallStars = () => {
       const smallStarsCount = 500;
       
       for (let i = 0; i < smallStarsCount; i++) {
         const starGeometry = new THREE.SphereGeometry(0.02 + Math.random() * 0.03, 8, 8);
         
-        // Random star colors with glow
         const starColors = [
-          0xffffff, // White
-          0x87ceeb, // Sky blue
-          0xffd700, // Gold
-          0xff6b6b, // Light red
-          0x98fb98, // Pale green
-          0xdda0dd, // Plum
-          0xffa500, // Orange
-          0x00ffff  // Cyan
+          0xffffff,
+          0x87ceeb,
+          0xffd700,
+          0xff6b6b,
+          0x98fb98,
+          0xdda0dd,
+          0xffa500,
+          0x00ffff
         ];
         
         const starColor = starColors[Math.floor(Math.random() * starColors.length)];
-        const starMaterial = new THREE.MeshBasicMaterial({
+        const starMaterial = new THREE.MeshPhongMaterial({
           color: starColor,
           emissive: starColor,
           emissiveIntensity: 0.5 + Math.random() * 0.5
@@ -126,14 +116,12 @@ const SolarSystemBackground = () => {
         
         const star = new THREE.Mesh(starGeometry, starMaterial);
         
-        // Random position in 3D space
         star.position.set(
           (Math.random() - 0.5) * 100,
           (Math.random() - 0.5) * 100,
           (Math.random() - 0.5) * 100
         );
         
-        // Add glow effect
         const glowGeometry = new THREE.SphereGeometry(0.05 + Math.random() * 0.05, 8, 8);
         const glowMaterial = new THREE.MeshBasicMaterial({
           color: starColor,
@@ -143,7 +131,6 @@ const SolarSystemBackground = () => {
         const glow = new THREE.Mesh(glowGeometry, glowMaterial);
         star.add(glow);
         
-        // Store animation data
         star.userData = {
           originalY: star.position.y,
           speed: Math.random() * 0.02 + 0.01,
@@ -157,10 +144,9 @@ const SolarSystemBackground = () => {
 
     createSmallStars();
 
-    // Create Sun with enhanced glow effect
     const createSun = () => {
       const sunGeometry = new THREE.SphereGeometry(2, 32, 32);
-      const sunMaterial = new THREE.MeshBasicMaterial({
+      const sunMaterial = new THREE.MeshPhongMaterial({
         color: 0xffd700,
         emissive: 0xffd700,
         emissiveIntensity: 1.0
@@ -168,7 +154,6 @@ const SolarSystemBackground = () => {
       const sun = new THREE.Mesh(sunGeometry, sunMaterial);
       sun.position.set(0, 0, 0);
       
-      // Add multiple sun glow layers
       const glowLayers = [2.5, 3.0, 3.5];
       glowLayers.forEach((radius, index) => {
         const sunGlowGeometry = new THREE.SphereGeometry(radius, 32, 32);
@@ -185,7 +170,6 @@ const SolarSystemBackground = () => {
       planetsRef.current.push({ mesh: sun, orbitRadius: 0, speed: 0.01, tilt: 0, name: 'Sun' });
     };
 
-    // Create planets with enhanced materials
     const createPlanet = (name, radius, distance, color, speed, tilt = 0, hasRings = false) => {
       const planetGeometry = new THREE.SphereGeometry(radius, 32, 32);
       const planetMaterial = new THREE.MeshPhongMaterial({ 
@@ -211,7 +195,6 @@ const SolarSystemBackground = () => {
       });
     };
 
-    // Create planets with realistic properties
     createSun();
     createPlanet('Mercury', 0.3, 4, 0x8c7853, 0.04);
     createPlanet('Venus', 0.5, 6, 0xffd700, 0.015);
@@ -222,7 +205,6 @@ const SolarSystemBackground = () => {
     createPlanet('Uranus', 0.8, 19, 0x00ffff, 0.0004);
     createPlanet('Neptune', 0.8, 22, 0x0000ff, 0.0001);
 
-    // Create Saturn's rings
     const createSaturnRings = () => {
       const ringGeometry = new THREE.RingGeometry(1.5, 2.5, 32);
       const ringMaterial = new THREE.MeshBasicMaterial({
@@ -246,11 +228,10 @@ const SolarSystemBackground = () => {
 
     createSaturnRings();
 
-    // Create asteroid belt
     const createAsteroidBelt = () => {
       const asteroidCount = 150;
       const asteroidGeometry = new THREE.SphereGeometry(0.03, 6, 6);
-      const asteroidMaterial = new THREE.MeshBasicMaterial({ 
+      const asteroidMaterial = new THREE.MeshPhongMaterial({ 
         color: 0x666666,
         emissive: 0x333333,
         emissiveIntensity: 0.1
@@ -271,11 +252,9 @@ const SolarSystemBackground = () => {
 
     createAsteroidBelt();
 
-    // Enhanced lighting for darker universe theme
     const ambientLight = new THREE.AmbientLight(0x101010, 0.1);
     scene.add(ambientLight);
 
-    // Sun light with enhanced glow
     const sunLight = new THREE.PointLight(0xffd700, 3, 60);
     sunLight.position.set(0, 0, 0);
     sunLight.castShadow = true;
@@ -283,36 +262,30 @@ const SolarSystemBackground = () => {
     sunLight.shadow.mapSize.height = 2048;
     scene.add(sunLight);
 
-    // Additional directional light for depth
     const directionalLight = new THREE.DirectionalLight(0xffffff, 0.3);
     directionalLight.position.set(10, 10, 5);
     directionalLight.castShadow = true;
     scene.add(directionalLight);
 
-    // Animation loop
     const animate = () => {
       requestAnimationFrame(animate);
 
       const time = Date.now() * 0.001;
 
-      // Animate planets orbiting around the sun
       planetsRef.current.forEach((planet, index) => {
         if (planet.orbitRadius > 0) {
           planet.mesh.position.x = Math.cos(time * planet.speed) * planet.orbitRadius;
           planet.mesh.position.z = Math.sin(time * planet.speed) * planet.orbitRadius;
           planet.mesh.rotation.y += 0.01;
         } else {
-          // Sun rotation
           planet.mesh.rotation.y += 0.005;
         }
       });
 
-      // Animate distant stars with twinkling effect
       if (starsRef.current) {
         starsRef.current.rotation.y += 0.0002;
         starsRef.current.rotation.x += 0.0001;
         
-        // Twinkling effect
         const positions = starsRef.current.geometry.attributes.position.array;
         const colors = starsRef.current.geometry.attributes.color.array;
         
@@ -326,13 +299,11 @@ const SolarSystemBackground = () => {
         starsRef.current.geometry.attributes.color.needsUpdate = true;
       }
 
-      // Animate small glowing stars
       smallStarsRef.current.forEach((star, index) => {
         const userData = star.userData;
         star.position.y = userData.originalY + Math.sin(time * userData.speed + index) * 0.5;
         star.rotation.y += 0.01;
         
-        // Pulsing glow effect
         const glow = star.children[0];
         if (glow) {
           const pulse = Math.sin(time * 2 + index) * 0.2 + 0.8;
@@ -345,7 +316,6 @@ const SolarSystemBackground = () => {
 
     animate();
 
-    // Handle window resize
     const handleResize = () => {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
@@ -354,7 +324,6 @@ const SolarSystemBackground = () => {
 
     window.addEventListener('resize', handleResize);
 
-    // Cleanup
     return () => {
       window.removeEventListener('resize', handleResize);
       if (mountRef.current && renderer.domElement) {
@@ -364,10 +333,8 @@ const SolarSystemBackground = () => {
     };
   }, []);
 
-  // GSAP animations for camera movement
   useGSAP(() => {
     if (cameraRef.current) {
-      // More dynamic camera movement
       gsap.to(cameraRef.current.position, {
         x: 8,
         y: 12,

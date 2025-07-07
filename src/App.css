@@ -49,7 +49,6 @@ section {
     @apply xl:mt-20 md:mt-0 mt-40;
   }
 
-  /* General Grids */
   .grid-base {
     @apply grid grid-cols-1;
   }
@@ -314,7 +313,6 @@ section {
   }
 }
 
-/* Hero text slider starts */
 .slide {
   display: inline-block;
   flex-direction: column;
@@ -354,8 +352,6 @@ section {
   }
 }
 
-/* Hero Text slider ends */
-
 .gradient-line {
   width: 2px;
   background: linear-gradient(
@@ -388,7 +384,6 @@ section {
   );
 }
 
-/* marquee */
 .marquee {
   width: 100dvw;
   overflow: hidden;
@@ -414,9 +409,7 @@ section {
     left: -100%;
   }
 }
-/* marquee end */
 
-/* Enhanced footer styling */
 footer {
   position: relative;
   overflow: hidden;
@@ -439,7 +432,6 @@ footer::before {
   z-index: -1;
 }
 
-/* Lightning effects */
 .lightning-effects {
   position: fixed;
   top: 0;
@@ -519,7 +511,6 @@ footer::before {
   }
 }
 
-/* Energy orbs */
 .energy-orbs {
   position: fixed;
   top: 0;
@@ -646,7 +637,6 @@ footer::before {
   opacity: 1;
 }
 
-/* Hire Me Page Styles */
 .hire-me-page {
   min-height: 100vh;
   background: radial-gradient(ellipse at bottom, #ffc0cb 0%, #000000 60%);

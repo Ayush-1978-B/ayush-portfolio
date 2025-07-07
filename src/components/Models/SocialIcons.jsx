@@ -10,9 +10,7 @@ const Model = ({ url, link, scale, ...props }) => {
   const [hovered, setHovered] = useState(false);
 
   useEffect(() => {
-    // if (url === "/models/linkdin.glb") {
-    //   actions[Object.keys(actions)[0]].play();
-    // }
+    
   }, [actions, url]);
 
   useEffect(() => {
@@ -44,23 +42,18 @@ function Word({ children, ...props }) {
   const [hovered, setHovered] = useState(false)
   const over = (e) => (e.stopPropagation(), setHovered(true))
   const out = () => setHovered(false)
-  // Change the mouse cursor on hover
   useEffect(() => {
     if (hovered) document.body.style.cursor = 'pointer'
     return () => (document.body.style.cursor = 'auto')
   }, [hovered])
-  // Tie component to the render-loop
   useFrame(({ camera }) => {
-    // Make text face the camera
     ref.current.quaternion.copy(camera.quaternion)
-    // Animate font color
     ref.current.material.color.lerp(color.set(hovered ? '#fa2720' : 'white'), 0.1)
   })
   return <Text ref={ref} onPointerOver={over} onPointerOut={out} onClick={() => console.log('clicked')} {...props} {...fontProps} children={children} />
 }
 
 function Cloud({ count = 4, radius = 20 }) {
-  // Create a count x count random words with spherical distribution
   const words = useMemo(() => {
     const temp = []
     const spherical = new THREE.Spherical()

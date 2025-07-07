@@ -52,7 +52,7 @@ const Hero = () => {
 
         {/* RIGHT: Image */}
         <div className="hero-image flex justify-center relative">
-          <img src="/images/ayush.png" alt="Ayush Yadav" className="w-2/3 md:w-full max-w-sm rounded-full shadow-2xl" />
+          <img src="/images/ayush.png" alt="Ayush Yadav" className="w-2/3 md:w-full max-w-sm backdrop-blur-sm rounded-full shadow-2xl" />
           <div className="absolute top-0 right-0">
             <Button text="Downloadn CV" />
           </div>

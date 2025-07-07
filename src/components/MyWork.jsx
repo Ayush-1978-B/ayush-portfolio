@@ -5,7 +5,7 @@ function MyWork() {
   const myWorkItems = [
     { title: 0, suffix: "+", description: "Years of Experience" },
     { title: 2, suffix: "+", description: "Projects Completed" },
-    { title: 3, suffix: "+", description: "Technologies Used" },
+    { title: 10, suffix: "+", description: "Technologies Used" },
     { title: 0, suffix: "+", description: "Job Done" },
   ];
   return (

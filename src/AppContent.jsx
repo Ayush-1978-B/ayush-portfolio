@@ -26,9 +26,14 @@ function AppContent() {
   const [isSignUp, setIsSignUp] = useState(false);
   const [signupSuccess, setSignupSuccess] = useState(false);
   const [showWelcome, setShowWelcome] = useState(false);
+  const [skipLogin, setSkipLogin] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
+    if (localStorage.getItem('justLoggedIn')) {
+      setSkipLogin(true);
+      localStorage.removeItem('justLoggedIn');
+    }
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setLoggedIn(true);
@@ -41,7 +46,7 @@ function AppContent() {
     return () => unsubscribe();
   }, []);
 
-  const showLogin = !loggedIn && location.pathname !== '/hire-me';
+  const showLogin = !loggedIn && location.pathname !== '/hire-me' && !skipLogin;
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -49,6 +54,8 @@ function AppContent() {
     setErrorMsg('');
     try {
       await signInWithEmailAndPassword(auth, username, password);
+      localStorage.setItem('justLoggedIn', '1');
+      window.location.reload();
     } catch (error) {
       setShowError(true);
       setErrorMsg(error.message);
@@ -66,6 +73,8 @@ function AppContent() {
         setIsSignUp(false);
         setSignupSuccess(false);
       }, 1000);
+      localStorage.setItem('justLoggedIn', '1');
+      window.location.reload();
     } catch (error) {
       setShowError(true);
       setErrorMsg(error.message);
@@ -78,6 +87,8 @@ function AppContent() {
     try {
       const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);
+      localStorage.setItem('justLoggedIn', '1');
+      window.location.reload();
     } catch (error) {
       setShowError(true);
       setErrorMsg(error.message);

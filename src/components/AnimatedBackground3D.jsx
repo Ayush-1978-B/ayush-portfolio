@@ -15,11 +15,9 @@ const AnimatedBackground3D = () => {
   useEffect(() => {
     if (!mountRef.current) return;
 
-    // Scene setup
     const scene = new THREE.Scene();
     sceneRef.current = scene;
 
-    // Camera setup
     const camera = new THREE.PerspectiveCamera(
       75,
       window.innerWidth / window.innerHeight,
@@ -29,7 +27,6 @@ const AnimatedBackground3D = () => {
     camera.position.z = 8;
     cameraRef.current = camera;
 
-    // Renderer setup
     const renderer = new THREE.WebGLRenderer({ 
       alpha: true,
       antialias: true 
@@ -41,7 +38,6 @@ const AnimatedBackground3D = () => {
     mountRef.current.appendChild(renderer.domElement);
     rendererRef.current = renderer;
 
-    // Create pulsing lights with different colors
     const createPulsingLight = (x, y, z, color, intensity = 1) => {
       const light = new THREE.PointLight(color, intensity, 50);
       light.position.set(x, y, z);
@@ -51,7 +47,6 @@ const AnimatedBackground3D = () => {
       return light;
     };
 
-    // Add multiple pulsing lights in a more dynamic pattern
     createPulsingLight(3, 3, 3, 0xff6b6b, 2);
     createPulsingLight(-3, -3, 3, 0x4ecdc4, 2);
     createPulsingLight(3, -3, 3, 0x45b7d1, 2);
@@ -61,7 +56,6 @@ const AnimatedBackground3D = () => {
     createPulsingLight(4, 0, 4, 0xffa726, 2);
     createPulsingLight(-4, 0, 4, 0xab47bc, 2);
 
-    // Create particle system
     const createParticles = () => {
       const particleCount = 200;
       const positions = new Float32Array(particleCount * 3);
@@ -95,7 +89,6 @@ const AnimatedBackground3D = () => {
 
     createParticles();
 
-    // Create floating geometric shapes with more variety
     const createFloatingShape = (geometry, material, x, y, z) => {
       const mesh = new THREE.Mesh(geometry, material);
       mesh.position.set(x, y, z);
@@ -114,7 +107,6 @@ const AnimatedBackground3D = () => {
       return mesh;
     };
 
-    // Create various geometric shapes with better materials
     const geometries = [
       new THREE.BoxGeometry(0.6, 0.6, 0.6),
       new THREE.SphereGeometry(0.4, 32, 32),
@@ -177,7 +169,6 @@ const AnimatedBackground3D = () => {
       })
     ];
 
-    // Create multiple floating shapes
     for (let i = 0; i < 20; i++) {
       const geometry = geometries[Math.floor(Math.random() * geometries.length)];
       const material = materials[Math.floor(Math.random() * materials.length)];
@@ -187,20 +178,17 @@ const AnimatedBackground3D = () => {
       createFloatingShape(geometry, material, x, y, z);
     }
 
-    // Animation loop
     const animate = () => {
       requestAnimationFrame(animate);
 
       const time = Date.now() * 0.001;
 
-      // Animate lights pulsing with different frequencies
       lightsRef.current.forEach((light, index) => {
         light.intensity = 1 + Math.sin(time * (1.5 + index * 0.3)) * 0.8;
         light.position.x += Math.sin(time * 0.5 + index) * 0.01;
         light.position.y += Math.cos(time * 0.5 + index) * 0.01;
       });
 
-      // Animate floating shapes with more complex movement
       modelsRef.current.forEach((model, index) => {
         const userData = model.userData;
         model.position.y = userData.originalY + Math.sin(time * userData.speed + index) * userData.floatRange;
@@ -210,7 +198,6 @@ const AnimatedBackground3D = () => {
         model.rotation.z += userData.rotationSpeed * 0.5;
       });
 
-      // Animate particles
       if (particlesRef.current) {
         particlesRef.current.rotation.y += 0.001;
         particlesRef.current.rotation.x += 0.0005;
@@ -221,7 +208,6 @@ const AnimatedBackground3D = () => {
 
     animate();
 
-    // Handle window resize
     const handleResize = () => {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
@@ -230,7 +216,6 @@ const AnimatedBackground3D = () => {
 
     window.addEventListener('resize', handleResize);
 
-    // Cleanup
     return () => {
       window.removeEventListener('resize', handleResize);
       if (mountRef.current && renderer.domElement) {
@@ -240,10 +225,8 @@ const AnimatedBackground3D = () => {
     };
   }, []);
 
-  // GSAP animations for camera movement
   useGSAP(() => {
     if (cameraRef.current) {
-      // More complex camera movement
       gsap.to(cameraRef.current.position, {
         x: 3,
         y: 2,
