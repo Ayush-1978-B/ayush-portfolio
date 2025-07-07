@@ -1,23 +1,77 @@
 const navLinks = [
   {
+    name: "Home",
+    link: "#hero",
+  },
+  {
     name: "Work",
     link: "#work",
   },
-  {
-    name: "Experience",
-    link: "#experience",
+    {
+    name: "Projects",
+    link: "#my-projects",
   },
   {
     name: "Skills",
     link: "#skills",
   },
+
   {
-    name: "Testimonials",
-    link: "#testimonials",
+    name: "Contact Me",
+    link: "#contact",
   },
 ];
 const logoIconsList = [
   {
+    imgPath: "/images/logo2.png",
+    name:"HTML"
+  },
+   {
+    imgPath: "/images/logo1.png",
+    name:"CSS"
+  },
+
+  {
+    imgPath: "/images/logo3.png",
+    name:"JavaScript"
+  },
+  {
+    imgPath: "/images/logo4.png",
+    name:"Tailwind CSS"
+  },
+  {
+    imgPath: "/images/logo5.png",
+    name:"React"
+  },
+  {
+    imgPath: "/images/logo6.svg",
+    name:"GSAP"
+  },
+  {
+    imgPath: "/images/logo2.png",
+    name:"HTML"
+  },
+   {
+    imgPath: "/images/logo1.png",
+    name:"CSS"
+  },
+
+  {
+    imgPath: "/images/logo3.png",
+    name:"JavaScript"
+  },
+  {
+    imgPath: "/images/logo4.png",
+    name:"Tailwind CSS"
+  },
+  {
+    imgPath: "/images/logo5.png",
+    name:"React"
+  },
+  {
+    imgPath: "/images/logo6.svg",
+    name:"GSAP"
+  },{
     imgPath: "/images/logo2.png",
     name:"HTML"
   },
@@ -52,30 +106,40 @@ const techStackIcons = [
     modelPath: "/models/html_logo-transformed.glb",
     scale: 0.3,
     rotation: [0, 0, 0],
+    rating: 5,
+    description: "I have a strong command of HTML for creating well-structured, semantic, and accessible web pages."
   },
   {
     name: "CSS",
     modelPath: "/models/css-transformed.glb",
     scale: 20,
     rotation: [0, 0, 0],
+    rating: 4,
+    description: "I am proficient in CSS, including modern techniques like Flexbox, Grid, and custom properties for creating responsive and visually appealing layouts."
   },
   {
     name: "JavaScript",
     modelPath: "/models/JavaScript-transformed.glb",
     scale: 20,
     rotation: [0, -Math.PI / 2, 0],
+    rating: 4,
+    description: "I have solid experience with JavaScript (ES6+) for building interactive and dynamic user interfaces."
   },
   {
     name: "Tailwind CSS",
     modelPath: "/models/tailwind-css-transformed.glb",
     scale: 1,
     rotation: [0, 0, 0],
+    rating: 5,
+    description: "I am highly skilled in Tailwind CSS for rapidly building custom, responsive, and utility-first designs."
   },
   {
     name: "React",
     modelPath: "/models/React-transformed.glb",
     scale: 3,
     rotation: [0, -Math.PI / 4, 0],
+    rating: 4,
+    description: "I have extensive experience in building complex, component-based applications with React and its ecosystem."
   },
 ];
 const abilities = [

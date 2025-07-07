@@ -1,27 +1,14 @@
 import React from 'react';
-import Hero from './components/parts/Hero';
-import ProjectCompleted from './components/parts/ProjectCompleted';
-import NavBar from './components/NavBar';
+import { BrowserRouter as Router } from 'react-router-dom';
 import './App.css';
-import LgoSection from './components/LgoSection';
-import Features from './components/parts/Features';
-import Experience from './components/parts/Experience';
-import TechStack from './components/parts/TechStack';
-import Contact from './components/parts/contact';
+import AppContent from './AppContent';
 
 function App() {
   return (
-  <>
-  <NavBar/>
-  <Hero/>
-  <ProjectCompleted/>
-  <LgoSection/>
-  <Features/>
-  <Experience/>
-  <TechStack/>
-  <Contact/>
-  </>
-  )
+    <Router>
+      <AppContent />
+    </Router>
+  );
 }
 
 export default App

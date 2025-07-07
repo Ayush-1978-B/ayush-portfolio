@@ -1,6 +1,5 @@
 import CountUp from 'react-countup';
-import React from 'react'
-import { div } from 'three/tsl'
+
 
 function MyWork() {
   const myWorkItems = [
@@ -10,7 +9,7 @@ function MyWork() {
     { title: 0, suffix: "+", description: "Job Done" },
   ];
   return (
-    <div id='my-work' className="px-5 md:px-20 xl:mt-0 mt-32">
+    <div id='work' className="px-5 md:px-20 xl:mt-0 mt-32 scroll-mt-20">
       <div className='mx-auto grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-7 '>
         {myWorkItems.map((item, index) => (
           <div key={index} className='bg-zinc-900 rounded-lg p-10 flex flex-col justify-center'>

@@ -1,75 +1,63 @@
-
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Button from "../Button";
-import HeroExperinces from "../Heromodels/HeroExperinces";
-import MyWork from "../MyWork";
+import "../AnimatedBackground.css";
+import "../AnimatedBackground3D.css";
 
 const Hero = () => {
-  const words = [
-    { text: 'Ideas', },
-    { text: 'Designs', },
-    { text: 'Experiences', },
-  ];
   useGSAP(() => {
-    gsap.fromTo('#hero-text h1',
+    const tl = gsap.timeline({ defaults: { ease: "power3.inOut" } });
+
+    tl.fromTo(".hero-text-line",
+      { y: 100, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1, stagger: 0.2 }
+    );
+
+    tl.fromTo(".hero-subtitle",
       { y: 50, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1, stagger: 0.5, ease: 'power2.inOut' },
+      { y: 0, opacity: 1, duration: 0.8 },
+      "-=0.5"
+    );
+
+    tl.fromTo(".hero-button",
+      { y: 50, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.8 },
+      "-=0.6"
+    );
+
+    tl.fromTo(".hero-image",
+      { scale: 0.8, opacity: 0 },
+      { scale: 1, opacity: 1, duration: 1.5 },
+      "-=0.8"
     );
   });
 
   return (
-    <section id="hero" className="relative overflow-hidden">
-      <div className="absolute top-0 left-0 z-10">
-        <img src="/src/images/bg.png" alt="" />
-      </div>
-
-      <div className="relative z-10 xl:mt-20 mt-32 md:h-dvh h-[80vh] flex  xl:items-center items-start justify-center">
+    <section id="hero" className="relative overflow-hidden min-h-screen flex items-center hero-glow">
+      <div className="relative z-20 grid md:grid-cols-2 gap-8 items-center max-w-6xl mx-auto px-4">
         {/* LEFT: Hero Content */}
-        <header className="flex flex-col justify-center md:w-full w-screen md:px-20 px-5">
-          <div className="flex flex-col gap-7 ">
-            <div>
-              <p className="text-white-50 md:text-[15px] text-[15px] relative z-10 pointer-events-none flex-wrap">
-                Hi, I’m Ayush — an ECE student at BIET Jhansi with a growing passion for web development.
-                Though my core lies in electronics and communication, I’ve found my creative space in front-end development.
-                I’m focused on mastering responsive design, modern UI frameworks, and building experiences that feel as good as they look.
-              </p>
+        <div className="flex flex-col items-start text-left text-white">
+          <div className="hero-text font-semibold text-4xl md:text-5xl lg:text-6xl leading-tight hero-text-glow">
+            <div className="hero-text-line overflow-hidden">
+              <span>From Signals to Styling</span>
             </div>
-            <div id="hero-text" className="flex flex-col justify-center md:text-[60px] text-[30px] font-semibold relative z-10 pointer-events-none">
-              <h1>
-                From Signals to Styling — My Web Dev Story Begins
-                <span className="slide absolute pt-0 px-2 md:px-5 py-[30px] h-[48px] md:h-[78px] md:translate-y-1 translate-y-0 overflow-hidden">
-                  <span className="wrapper">
-                    {words.map((word, index) => (
-                      <span
-                        key={index}
-                        className="flex items-center md:gap-3 gap-1 pb-2"
-                      >
-                        <span>{word.text}</span>
-                      </span>
-                    ))}
-                  </span>
-                </span>
-              </h1>
-              <h1>into Real Projects</h1>
-              <h1>that Deliver Results</h1>
+            <div className="hero-text-line overflow-hidden">
+              <span>My Web Dev Story Begins</span>
             </div>
-            <Button
-              text="See My Work"
-              className="md:w-80 md:h-16 w-60 h-12"
-              id="counter"
-            />
           </div>
-        </header>
+          <p className="hero-subtitle text-base md:text-lg max-w-xl mt-6">
+            Hi, I’m Ayush — an ECE student at BIET Jhansi with a growing passion for web development. Though my core lies in electronics and communication, I’ve found my creative space in front-end development. I’m focused on mastering responsive design, modern UI frameworks, and building experiences that feel as good as they look.
+          </p>
+        </div>
 
-        {/* RIGHT: 3D Model or Visual */}
-        <figure>
-          <div className="xl:w-[70%] w-full h-full min-h-[50vh] absolute xl:-top-20 top-24 xl:-right-20 right-0">
-            <HeroExperinces />
+        {/* RIGHT: Image */}
+        <div className="hero-image flex justify-center relative">
+          <img src="/images/ayush.png" alt="Ayush Yadav" className="w-2/3 md:w-full max-w-sm rounded-full shadow-2xl" />
+          <div className="absolute top-0 right-0">
+            <Button text="Downloadn CV" />
           </div>
-        </figure>
+        </div>
       </div>
-      <MyWork />
     </section>
   );
 };

@@ -1,32 +1,25 @@
 import React from 'react'
-import { navLinks } from '../constants/Index' 
+import { navLinks } from '../constants/Index'
+import HireMeButton from './HireMeButton'
 import '../index.css'
 import { useEffect,useState } from 'react'
 
 function NavBar() {
-  const [scrolled, setScrolled] = useState(false);
-  useEffect(() => {
-    const handleScroll = () => {
-      const isScrolled = window.scrollY > 10;
-      setScrolled(isScrolled);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [])
-  
+  // Helper to set document title
+  const handleNavClick = (name) => {
+    document.title = `${name} | Ayush Yadav`;
+  };
   return (
-    <header className={`navbar ${scrolled ? 'scrolled' : 'not-scrolled md:top-10'}`}>
+    <header className="navbar bg-black bg-opacity-80 backdrop-blur-sm">
       <div className="inner">
-        <a href="#hero" className=" logo">
+        <a href="#hero" className=" logo" onClick={() => handleNavClick('Home')}>
           Ayush ! Yadav
         </a>
         <nav className="desktop">
           <ul>
             {navLinks.map(({link,name}) => (
               <li key={name} className="group">
-                <a href={link} >
+                <a href={link} onClick={() => handleNavClick(name)}>
                   <span>{name}</span>
                   <span className="underline group-hover:w-full"/>
                 </a>
@@ -34,12 +27,7 @@ function NavBar() {
             ))}
           </ul>
         </nav>
-        <a href="#contact" className="contact-btn group">
-          <div className="inner  group-hover:bg-black-50">
-            <span className="group-hover:text-white">Contact me</span>
-          </div>
-        </a>
-
+        <HireMeButton />
       </div>
     </header>
   )
