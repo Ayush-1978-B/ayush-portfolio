@@ -83,7 +83,7 @@ const HireMe = () => {
               />
             </motion.div>
             <h3 className="text-2xl font-bold text-white mb-2">Ayush Yadav</h3>
-            <p className="text-pink-400 font-semibold">Full Stack Developer</p>
+            <p className="text-pink-400 font-semibold">Front End Developer</p>
             <div className="flex items-center justify-center gap-2 mt-2">
               <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
               <span className="text-green-400 text-sm">Available for work</span>
@@ -94,11 +94,11 @@ const HireMe = () => {
           <div className="space-y-3 mb-6">
             <div className="flex items-center gap-3 text-gray-300">
               <FaEnvelope className="w-4 h-4 text-pink-400" />
-              <span className="text-sm">ayush.yadav@example.com</span>
+              <span className="text-sm">yadavayush535353@gmail.com</span>
             </div>
             <div className="flex items-center gap-3 text-gray-300">
               <FaPhone className="w-4 h-4 text-pink-400" />
-              <span className="text-sm">+1 (555) 123-4567</span>
+              <span className="text-sm">+91 6307397947</span>
             </div>
             <div className="flex items-center gap-3 text-gray-300">
               <FaMapMarkerAlt className="w-4 h-4 text-pink-400" />
