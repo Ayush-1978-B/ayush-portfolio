@@ -21,6 +21,7 @@ const navLinks = [
     link: "#contact",
   },
 ];
+
 const logoIconsList = [
   {
     imgPath: "/images/logo2.png",
@@ -96,10 +97,8 @@ const logoIconsList = [
     imgPath: "/images/logo6.svg",
     name:"GSAP"
   },
-  
-  
-
 ];
+
 const techStackIcons = [
   {
     name: "HTML",
@@ -107,7 +106,10 @@ const techStackIcons = [
     scale: 0.3,
     rotation: [0, 0, 0],
     rating: 5,
-    description: "I have a strong command of HTML for creating well-structured, semantic, and accessible web pages."
+    description: "Semantic markup, accessibility, and modern HTML5 features for well-structured web pages.",
+    category: "Frontend",
+    icon: "🌐",
+    color: "from-orange-500 to-red-500"
   },
   {
     name: "CSS",
@@ -115,89 +117,93 @@ const techStackIcons = [
     scale: 20,
     rotation: [0, 0, 0],
     rating: 4,
-    description: "I am proficient in CSS, including modern techniques like Flexbox, Grid, and custom properties for creating responsive and visually appealing layouts."
+    description: "Modern CSS with Flexbox, Grid, animations, and responsive design techniques.",
+    category: "Frontend",
+    icon: "🎨",
+    color: "from-blue-500 to-purple-500"
   },
   {
     name: "JavaScript",
     modelPath: "/models/JavaScript-transformed.glb",
     scale: 20,
     rotation: [0, -Math.PI / 2, 0],
-    rating: 4,
-    description: "I have solid experience with JavaScript (ES6+) for building interactive and dynamic user interfaces."
+    rating: 3,
+    description: "ES6+ features, async programming, DOM manipulation, and modern JavaScript patterns.",
+    category: "Programming",
+    icon: "⚡",
+    color: "from-yellow-400 to-orange-500"
   },
   {
     name: "Tailwind CSS",
     modelPath: "/models/tailwind-css-transformed.glb",
     scale: 1,
     rotation: [0, 0, 0],
-    rating: 5,
-    description: "I am highly skilled in Tailwind CSS for rapidly building custom, responsive, and utility-first designs."
+    rating: 4,
+    description: "Utility-first CSS framework for rapid UI development and responsive design.",
+    category: "Frontend",
+    icon: "💨",
+    color: "from-cyan-400 to-blue-500"
   },
   {
     name: "React",
     modelPath: "/models/React-transformed.glb",
     scale: 3,
     rotation: [0, -Math.PI / 4, 0],
+    rating: 3,
+    description: "Component-based architecture, hooks, state management, and modern React patterns.",
+    category: "Frontend",
+    icon: "⚛️",
+    color: "from-blue-400 to-cyan-500"
+  },
+  {
+    name: "Three.js",
+    modelPath: "/models/React-transformed.glb",
+    scale: 2,
+    rotation: [0, -Math.PI / 4, 0],
+    rating: 3,
+    description: "3D graphics and animations for web applications with WebGL and modern 3D techniques.",
+    category: "Graphics",
+    icon: "🎮",
+    color: "from-purple-500 to-pink-500"
+  },
+  {
+    name: "GSAP",
+    modelPath: "/models/React-transformed.glb",
+    scale: 3,
+    rotation: [0, -Math.PI / 4, 0],
     rating: 4,
-    description: "I have extensive experience in building complex, component-based applications with React and its ecosystem."
+    description: "Professional-grade animations and motion design for web applications.",
+    category: "Animation",
+    icon: "🎬",
+    color: "from-green-400 to-teal-500"
   },
 ];
+
 const abilities = [
   {
     imgPath: "/images/seo.png",
-    title: "Craftsmanship",
-    desc: "I don’t just write code—I shape experiences. My work reflects a dedication to precision, consistency, and polish across every pixel. From fluid GSAP animations to responsive layouts crafted with Tailwind CSS, I approach every project with the mindset of a digital craftsman. It’s about more than functionality—it's about feeling. Every interaction, every color palette, every layout grid is a deliberate choice aimed at enhancing clarity, usability, and beauty.",
+    title: "Digital Craftsmanship",
+    desc: "I approach every project with the precision of a digital craftsman. From pixel-perfect layouts to smooth animations, I ensure every detail contributes to an exceptional user experience. My code is clean, well-documented, and follows modern best practices.",
+    icon: "🎨",
+    color: "from-purple-500 to-pink-500",
+    features: ["Clean Code", "Best Practices", "Performance Optimization", "User Experience"]
   },
   {
     imgPath: "/images/chat.png",
-    title: "Intentional Presence",
-    desc: "I believe communication isn't about being the loudest—it's about being clear, consistent, and conscious in every interaction. Whether it's collaborating with teams or presenting ideas through user interfaces, I value depth over noise. My work reflects this mindset: well-documented code, responsive feedback loops, and carefully designed user flows that speak louder than words. I prefer to listen deeply, observe patterns, and contribute meaningfully—ensuring that what I build communicates reliability and thoughtfulness, even in silence.",
+    title: "Problem Solver",
+    desc: "I thrive on turning complex challenges into elegant solutions. Whether it's debugging tricky issues or architecting scalable applications, I approach problems systematically and creatively. I believe in understanding the root cause before implementing solutions.",
+    icon: "🧩",
+    color: "from-blue-500 to-cyan-500",
+    features: ["Analytical Thinking", "Creative Solutions", "Systematic Approach", "Debugging Skills"]
   },
   {
     imgPath: "/images/time.png",
-    title: "Dependable Follow-Through",
-    desc: "As a student, I’ve learned that success isn’t just about ideas—it’s about consistent execution. I pride myself on managing my time, setting realistic goals, and seeing projects through to completion. Whether it’s meeting assignment deadlines, contributing to team-based tasks, or pushing personal projects over the finish line, I value the trust that comes from reliability. My work reflects that: thoughtful planning, clear priorities, and a steady rhythm of progress.",
+    title: "Continuous Learner",
+    desc: "The web development landscape evolves rapidly, and I stay ahead by constantly learning new technologies and techniques. I'm passionate about exploring emerging trends and integrating them into my work to deliver cutting-edge solutions.",
+    icon: "🚀",
+    color: "from-green-500 to-teal-500",
+    features: ["Adaptability", "Latest Technologies", "Skill Development", "Innovation"]
   },
 ];
-const expCards = [
-  {
-    review:
-      "Adrian brought creativity and technical expertise to the team, significantly improving our frontend performance. His work has been invaluable in delivering faster experiences.",
-    imgPath: "/images/logo1.png",
-    logoPath: "/images/logo1.png",
-    title: "Frontend Developer",
-    date: "January 2023 - Present",
-    description: [
-      "Developed and maintained user-facing features for the Hostinger website.",
-      "Collaborated closely with UI/UX designers to ensure seamless user experiences.",
-      "Optimized web applications for maximum speed and scalability.",
-    ],
-  },
-  {
-    review:
-      "Adrian’s contributions to Docker's web applications have been outstanding. He approaches challenges with a problem-solving mindset.",
-    imgPath: "/images/logo2.png",
-    logoPath: "/images/logo2.png",
-    title: "Full Stack Developer",
-    date: "June 2020 - December 2023",
-    description: [
-      "Led the development of Docker's web applications, focusing on scalability.",
-      "Worked with backend engineers to integrate APIs seamlessly with the frontend.",
-      "Contributed to open-source projects that were used with the Docker ecosystem.",
-    ],
-  },
-  {
-    review:
-      "Adrian’s work on Appwrite’s mobile app brought a high level of quality and efficiency. He delivered solutions that enhanced our mobile experience & meet our product goals.",
-    imgPath: "/images/logo3.png",
-    logoPath: "/images/logo3.png",
-    title: "React Native Developer",
-    date: "March 2019 - May 2020",
-    description: [
-      "Built cross-platform mobile apps using React Native, integrating with Appwrite's backend services.",
-      "Improved app performance and user experience through code optimization and testing.",
-      "Coordinated with the product team to implement features based on feedback.",
-    ],
-  },
-];
-export { navLinks, logoIconsList, abilities, expCards, techStackIcons };
+
+export { navLinks, logoIconsList, techStackIcons, abilities };

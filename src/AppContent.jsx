@@ -12,7 +12,6 @@ import Contact from './components/parts/contact';
 import HireMe from './components/HireMe';
 import MovingTextBanner from './components/MovingTextBanner';
 import Footer from './components/Footer';
-import { IconCloudDemo } from './components/magicui/IconDemo';
 import SolarSystemBackground from './components/SolarSystemBackground';
 import TransparentOverlay from './components/TransparentOverlay';
 import netflixLogo from './assets/netflix-logo.png';
@@ -100,7 +99,44 @@ function AppContent() {
       {showLogin && (
         <div style={{position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', background: 'rgba(0,0,0,0.85)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
           <div style={{background: '#181818', padding: 40, borderRadius: 8, minWidth: 350, boxShadow: '0 4px 32px rgba(0,0,0,0.7)', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-            <img src={netflixLogo} alt="Logo" style={{width: 120, marginBottom: 24}} />
+            <div style={{
+              width: 120,
+              height: 120,
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginBottom: 24,
+              background: 'radial-gradient(circle, rgba(229, 9, 20, 0.1) 0%, rgba(229, 9, 20, 0.05) 50%, transparent 100%)',
+              border: '2px solid transparent',
+              backgroundClip: 'padding-box',
+              position: 'relative',
+              boxShadow: '0 0 30px rgba(229, 9, 20, 0.6), 0 0 60px rgba(229, 9, 20, 0.3), 0 0 90px rgba(229, 9, 20, 0.1)',
+              animation: 'pulse 2s ease-in-out infinite alternate'
+            }}>
+              <div style={{
+                position: 'absolute',
+                top: '-2px',
+                left: '-2px',
+                right: '-2px',
+                bottom: '-2px',
+                borderRadius: '50%',
+                background: 'linear-gradient(45deg, #e50914, #ff6b6b, #e50914)',
+                zIndex: -1,
+                animation: 'rotate 3s linear infinite'
+              }}></div>
+              <img 
+                src={netflixLogo} 
+                alt="Logo" 
+                style={{
+                  width: 80,
+                  height: 80,
+                  borderRadius: '50%',
+                  objectFit: 'cover',
+                  filter: 'drop-shadow(0 0 10px rgba(229, 9, 20, 0.5))'
+                }} 
+              />
+            </div>
             <form onSubmit={isSignUp ? handleSignUp : handleLogin} style={{width: '100%'}}>
               <h2 style={{marginBottom: 24, color: '#fff', fontWeight: 700, fontSize: 28, textAlign: 'center'}}>{isSignUp ? 'Sign Up' : 'Sign In'}</h2>
               <div style={{marginBottom: 16}}>
@@ -157,12 +193,11 @@ function AppContent() {
               <>
                 <NavBar/>
                 <Hero/>
-                <IconCloudDemo/>
                 <MyWork/>
                 <ProjectCompleted/>
                 <Features/>
                 <Experience/>
-                <MovingTextBanner text="Backend Journey Begins Soon" />
+                <MovingTextBanner />
                 <Contact/>
                 <Footer />
               </>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import ProfileCard from './glowingcard/glowing';
 import { db } from '../lib/firebase';
 import { collection, addDoc } from 'firebase/firestore';
@@ -54,138 +55,257 @@ const HireMe = () => {
   };
 
   return (
-    <div id="hire-me" className="hire-me-page">
+    <motion.div 
+      id="hire-me" 
+      className="hire-me-page"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.7 }}
+    >
       <div className="hire-me-card-container">
-        <ProfileCard
-          avatarUrl="/images/ayush.png"
-          status="online"
-          contactText="Contact Me"
-        />
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          <ProfileCard
+            avatarUrl="/images/ayush.png"
+            status="online"
+            contactText="Contact Me"
+          />
+        </motion.div>
       </div>
-      <div className="hire-me-form-container">
-        <h2 className="text-3xl font-extrabold text-center mb-8 form-field" style={{ animationDelay: '0.1s' }}>Let's Work Together</h2>
-        <form className="space-y-6" onSubmit={handleSubmit}>
-          <div className="form-field" style={{ animationDelay: '0.2s' }}>
-            <label htmlFor="full-name" className="block text-sm font-medium text-gray-400">
+      
+      <motion.div 
+        className="hire-me-form-container"
+        initial={{ opacity: 0, x: 50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, delay: 0.4 }}
+      >
+        <motion.h2 
+          className="text-2xl md:text-3xl font-extrabold text-center mb-6 md:mb-8 text-white"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+        >
+          Let's Work Together
+        </motion.h2>
+        
+        <motion.form 
+          className="space-y-4 md:space-y-6" 
+          onSubmit={handleSubmit}
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: {},
+            visible: {
+              transition: { staggerChildren: 0.1 },
+            },
+          }}
+        >
+          <motion.div 
+            className="form-field"
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0 },
+            }}
+          >
+            <label htmlFor="full-name" className="block text-sm font-medium text-gray-300 mb-2">
               Full Name
             </label>
-            <div className="mt-1">
-              <input
-                type="text"
-                name="fullName"
-                id="full-name"
-                autoComplete="name"
-                required
-                value={form.fullName}
-                onChange={handleChange}
-                className="block w-full px-4 py-3 rounded-md bg-gray-800 border-gray-700 focus:ring-pink-500 focus:border-pink-500"
-              />
-            </div>
-          </div>
+            <input
+              type="text"
+              name="fullName"
+              id="full-name"
+              autoComplete="name"
+              required
+              value={form.fullName}
+              onChange={handleChange}
+              className="block w-full px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-700 focus:ring-2 focus:ring-pink-500 focus:border-pink-500 text-white placeholder-gray-400 transition-all duration-300"
+              placeholder="Enter your full name"
+            />
+          </motion.div>
 
-          <div className="form-field" style={{ animationDelay: '0.3s' }}>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-400">
+          <motion.div 
+            className="form-field"
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0 },
+            }}
+          >
+            <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
               Email Address
             </label>
-            <div className="mt-1">
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-                value={form.email}
-                onChange={handleChange}
-                className="block w-full px-4 py-3 rounded-md bg-gray-800 border-gray-700 focus:ring-pink-500 focus:border-pink-500"
-              />
-            </div>
-          </div>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autoComplete="email"
+              required
+              value={form.email}
+              onChange={handleChange}
+              className="block w-full px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-700 focus:ring-2 focus:ring-pink-500 focus:border-pink-500 text-white placeholder-gray-400 transition-all duration-300"
+              placeholder="Enter your email address"
+            />
+          </motion.div>
 
-          <div className="form-field" style={{ animationDelay: '0.4s' }}>
-            <label htmlFor="phone" className="block text-sm font-medium text-gray-400">
-              Phone Number <span className="text-gray-500">(optional)</span>
+          <motion.div 
+            className="form-field"
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0 },
+            }}
+          >
+            <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-2">
+              Phone Number <span className="text-gray-500 text-xs">(optional)</span>
             </label>
-            <div className="mt-1">
-              <input
-                type="tel"
-                name="phone"
-                id="phone"
-                autoComplete="tel"
-                value={form.phone}
-                onChange={handleChange}
-                className="block w-full px-4 py-3 rounded-md bg-gray-800 border-gray-700 focus:ring-pink-500 focus:border-pink-500"
-              />
-            </div>
-          </div>
+            <input
+              type="tel"
+              name="phone"
+              id="phone"
+              autoComplete="tel"
+              value={form.phone}
+              onChange={handleChange}
+              className="block w-full px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-700 focus:ring-2 focus:ring-pink-500 focus:border-pink-500 text-white placeholder-gray-400 transition-all duration-300"
+              placeholder="Enter your phone number"
+            />
+          </motion.div>
 
-          <div className="form-field" style={{ animationDelay: '0.5s' }}>
-            <label htmlFor="company" className="block text-sm font-medium text-gray-400">
-              Company/Organization <span className="text-gray-500">(if applicable)</span>
+          <motion.div 
+            className="form-field"
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0 },
+            }}
+          >
+            <label htmlFor="company" className="block text-sm font-medium text-gray-300 mb-2">
+              Company/Organization <span className="text-gray-500 text-xs">(if applicable)</span>
             </label>
-            <div className="mt-1">
-              <input
-                type="text"
-                name="company"
-                id="company"
-                autoComplete="organization"
-                value={form.company}
-                onChange={handleChange}
-                className="block w-full px-4 py-3 rounded-md bg-gray-800 border-gray-700 focus:ring-pink-500 focus:border-pink-500"
-              />
-            </div>
-          </div>
+            <input
+              type="text"
+              name="company"
+              id="company"
+              autoComplete="organization"
+              value={form.company}
+              onChange={handleChange}
+              className="block w-full px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-700 focus:ring-2 focus:ring-pink-500 focus:border-pink-500 text-white placeholder-gray-400 transition-all duration-300"
+              placeholder="Enter company name"
+            />
+          </motion.div>
 
-          <div className="form-field" style={{ animationDelay: '0.6s' }}>
+          <motion.div 
+            className="form-field"
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0 },
+            }}
+          >
             <fieldset>
-              <legend className="block text-sm font-medium text-gray-400">Preferred Communication</legend>
-              <div className="mt-2 space-y-2 sm:space-y-0 sm:flex sm:space-x-4">
+              <legend className="block text-sm font-medium text-gray-300 mb-3">Preferred Communication</legend>
+              <div className="space-y-3 sm:space-y-0 sm:flex sm:space-x-6">
                 <div className="flex items-center">
-                  <input id="com-email" name="communication" type="radio" value="Email" checked={form.communication === 'Email'} onChange={handleChange} className="focus:ring-pink-500 h-4 w-4 text-pink-600 border-gray-700" />
+                  <input 
+                    id="com-email" 
+                    name="communication" 
+                    type="radio" 
+                    value="Email" 
+                    checked={form.communication === 'Email'} 
+                    onChange={handleChange} 
+                    className="focus:ring-pink-500 h-4 w-4 text-pink-600 border-gray-700 bg-gray-800" 
+                  />
                   <label htmlFor="com-email" className="ml-3 block text-sm font-medium text-gray-300">Email</label>
                 </div>
                 <div className="flex items-center">
-                  <input id="com-phone" name="communication" type="radio" value="Phone" checked={form.communication === 'Phone'} onChange={handleChange} className="focus:ring-pink-500 h-4 w-4 text-pink-600 border-gray-700" />
+                  <input 
+                    id="com-phone" 
+                    name="communication" 
+                    type="radio" 
+                    value="Phone" 
+                    checked={form.communication === 'Phone'} 
+                    onChange={handleChange} 
+                    className="focus:ring-pink-500 h-4 w-4 text-pink-600 border-gray-700 bg-gray-800" 
+                  />
                   <label htmlFor="com-phone" className="ml-3 block text-sm font-medium text-gray-300">Phone</label>
                 </div>
                 <div className="flex items-center">
-                  <input id="com-video" name="communication" type="radio" value="Video Call" checked={form.communication === 'Video Call'} onChange={handleChange} className="focus:ring-pink-500 h-4 w-4 text-pink-600 border-gray-700" />
+                  <input 
+                    id="com-video" 
+                    name="communication" 
+                    type="radio" 
+                    value="Video Call" 
+                    checked={form.communication === 'Video Call'} 
+                    onChange={handleChange} 
+                    className="focus:ring-pink-500 h-4 w-4 text-pink-600 border-gray-700 bg-gray-800" 
+                  />
                   <label htmlFor="com-video" className="ml-3 block text-sm font-medium text-gray-300">Video Call</label>
                 </div>
               </div>
             </fieldset>
-          </div>
+          </motion.div>
 
-          <div className="form-field" style={{ animationDelay: '0.7s' }}>
-            <label htmlFor="best-time" className="block text-sm font-medium text-gray-400">
+          <motion.div 
+            className="form-field"
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0 },
+            }}
+          >
+            <label htmlFor="best-time" className="block text-sm font-medium text-gray-300 mb-2">
               Best time to reach out
             </label>
-            <div className="mt-1">
-              <input
-                type="text"
-                name="bestTime"
-                id="best-time"
-                value={form.bestTime}
-                onChange={handleChange}
-                className="block w-full px-4 py-3 rounded-md bg-gray-800 border-gray-700 focus:ring-pink-500 focus:border-pink-500"
-              />
-            </div>
-          </div>
+            <input
+              type="text"
+              name="bestTime"
+              id="best-time"
+              value={form.bestTime}
+              onChange={handleChange}
+              className="block w-full px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-700 focus:ring-2 focus:ring-pink-500 focus:border-pink-500 text-white placeholder-gray-400 transition-all duration-300"
+              placeholder="e.g., Weekdays 9 AM - 5 PM"
+            />
+          </motion.div>
 
-          <div className="form-field" style={{ animationDelay: '0.8s' }}>
-            <button
+          <motion.div 
+            className="form-field"
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0 },
+            }}
+          >
+            <motion.button
               type="submit"
-              className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 focus:ring-offset-gray-900 submit-btn-animated"
+              className="w-full flex justify-center py-3 px-6 border border-transparent rounded-lg shadow-lg text-sm font-medium text-white bg-gradient-to-r from-pink-600 to-pink-700 hover:from-pink-700 hover:to-pink-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 focus:ring-offset-gray-900 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
               disabled={loading}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
             >
               {loading ? 'Sending...' : 'Send Request'}
-            </button>
-            {success && <div className="text-green-400 mt-2">Request sent successfully!</div>}
-            {error && <div className="text-red-400 mt-2">{error}</div>}
-          </div>
-        </form>
-      </div>
-      
-    </div>
+            </motion.button>
+            
+            {success && (
+              <motion.div 
+                className="text-green-400 mt-3 text-center"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3 }}
+              >
+                Request sent successfully!
+              </motion.div>
+            )}
+            
+            {error && (
+              <motion.div 
+                className="text-red-400 mt-3 text-center"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3 }}
+              >
+                {error}
+              </motion.div>
+            )}
+          </motion.div>
+        </motion.form>
+      </motion.div>
+    </motion.div>
   );
 };
 
