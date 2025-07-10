@@ -54,82 +54,16 @@ VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
 VITE_FIREBASE_APP_ID=your_app_id
 ```
 
-## 🌐 Deploy to Firebase Hosting
+## 🌐 Deploy to Static Hosting
 
-### Step 1: Install Firebase CLI
-```bash
-npm install -g firebase-tools
-```
-
-### Step 2: Login to Firebase
-```bash
-firebase login
-```
-
-### Step 3: Initialize Firebase
-```bash
-firebase init hosting
-```
-
-When prompted:
-- Select your project
-- Use `dist` as public directory
-- Configure as single-page app: **Yes**
-- Don't overwrite index.html: **No**
-
-### Step 4: Build and Deploy
-```bash
-# Build the project
-npm run build
-
-# Deploy to Firebase
-firebase deploy
-```
+You can deploy the built `dist` folder to any static hosting provider, such as:
+- **Vercel**: `vercel --prod`
+- **Netlify**: Drag and drop the `dist` folder
+- **GitHub Pages**: Use a tool like `gh-pages` to publish the `dist` or `build` folder
 
 ## 🔄 Continuous Deployment
 
-### GitHub Actions (Optional)
-Create `.github/workflows/deploy.yml`:
-
-```yaml
-name: Deploy to Firebase
-
-on:
-  push:
-    branches: [ main ]
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    
-    - name: Setup Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '18'
-        
-    - name: Install dependencies
-      run: npm install
-      
-    - name: Build
-      run: npm run build
-      env:
-        VITE_FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
-        VITE_FIREBASE_AUTH_DOMAIN: ${{ secrets.FIREBASE_AUTH_DOMAIN }}
-        VITE_FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
-        VITE_FIREBASE_STORAGE_BUCKET: ${{ secrets.FIREBASE_STORAGE_BUCKET }}
-        VITE_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.FIREBASE_MESSAGING_SENDER_ID }}
-        VITE_FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
-        
-    - name: Deploy to Firebase
-      uses: FirebaseExtended/action-hosting-deploy@v0
-      with:
-        repoToken: '${{ secrets.GITHUB_TOKEN }}'
-        firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
-        channelId: live
-        projectId: your-project-id
-```
+You can set up CI/CD with your preferred platform (e.g., Vercel, Netlify, GitHub Actions) for automatic deployment on push.
 
 ## 📝 Important Notes
 
@@ -155,27 +89,22 @@ jobs:
 
 ### Common Issues
 
-**Firebase not working:**
-- Check environment variables are set correctly
-- Verify Firebase project is active
-- Check Firebase console for errors
-
 **Build fails:**
 - Run `npm install` to ensure all dependencies
 - Check for syntax errors in console
 - Verify all imports are correct
 
 **Deployment fails:**
-- Check Firebase CLI is installed and logged in
-- Verify project ID is correct
-- Check Firebase project permissions
+- Check your hosting provider's documentation
+- Verify project ID or site settings are correct
+- Check project permissions
 
 ## 📞 Support
 
 If you encounter issues:
 1. Check the browser console for errors
-2. Review Firebase console logs
-3. Check GitHub Actions logs (if using CI/CD)
+2. Review hosting provider console/logs
+3. Check CI/CD logs (if using)
 4. Verify all environment variables are set
 
 ---

@@ -18,7 +18,6 @@ A modern, responsive portfolio website built with React, Three.js, and Framer Mo
 - **3D Graphics**: Three.js
 - **Animations**: Framer Motion
 - **Icons**: React Icons
-- **Deployment**: Firebase Hosting
 
 ## 📦 Installation
 
@@ -61,7 +60,7 @@ src/
 ├── constants/
 │   └── Index.js         # Data and configuration
 ├── lib/
-│   └── firebase.js      # Firebase configuration
+│   └── firebase.js      # Firebase configuration (for Firestore/DB only)
 └── assets/              # Static assets
 ```
 
@@ -118,35 +117,9 @@ npm run lint         # Run ESLint
 
 ## 🚀 Deployment
 
-### Firebase Hosting
-
-1. **Install Firebase CLI**
-   ```bash
-   npm install -g firebase-tools
-   ```
-
-2. **Login to Firebase**
-   ```bash
-   firebase login
-   ```
-
-3. **Initialize Firebase**
-   ```bash
-   firebase init hosting
-   ```
-
-4. **Deploy**
-   ```bash
-   npm run build
-   firebase deploy
-   ```
-
-### Other Platforms
-
-The project can be deployed to any static hosting platform:
+You can deploy the project to any static hosting platform:
 - **Vercel**: `vercel --prod`
 - **Netlify**: Drag and drop `dist` folder
-- **GitHub Pages**: Use GitHub Actions
 
 ## 📊 Analytics
 
